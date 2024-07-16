@@ -1,6 +1,6 @@
 # NetflixClone
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0. <br />
 This is a web-based Netflix Clone application that is your ultimate entertainment hub, offering a vast library of movies and TV shows at your fingertips. Here you will discover new favorites, dive into timeless classics, and manage your personalized watchlist with ease. With intuitive recommendations and a user-friendly interface, StreamFlix transforms your viewing experience into a cinematic journey from the comfort of your home.
 
 ## Development server
