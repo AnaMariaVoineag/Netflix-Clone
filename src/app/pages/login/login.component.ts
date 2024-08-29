@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       theme: 'filled_blue',
       size: 'large',
       shape: 'rectangle',
-      width: 350
+      width: 300
     })
   }
 
@@ -38,6 +38,4 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['home']);
     }
   }
-
-
 }

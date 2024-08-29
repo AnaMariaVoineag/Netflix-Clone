@@ -43,23 +43,51 @@ export class HomeComponent implements OnInit {
   ];
   
   ngOnInit(): void {
-    forkJoin(this.sources)
-    .pipe(
-      map(([movies, tvShows, nowPlaying, upcoming, popular, topRated])=>{
-        this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
-        this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
-        return {movies, tvShows, nowPlaying, upcoming, popular, topRated}
-      })
-    ).subscribe((res:any)=>{
-      this.movies = res.movies.results as IVideoContent[];
-      this.tvShows = res.tvShows.results as IVideoContent[];
-      this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
-      this.upcomingMovies = res.upcoming.results as IVideoContent[];
-      this.popularMovies = res.popular.results as IVideoContent[];
-      this.topRatedMovies = res.topRated.results as IVideoContent[];
-    })
+    const ids = {
+      tvShows: [33117, 45054, 89941, 60998],
+      movies: [826510, 89185, 158852]
+    };
+  
+    const tvShowRequests = ids.tvShows.map(id => this.movieService.getTvShowById(id));
+    const movieRequests = ids.movies.map(id => this.movieService.getMoviesById(id));
+  
+    forkJoin([...tvShowRequests, ...movieRequests, ...this.sources])
+      .pipe(
+        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, haroldID, radioRebelId, tomorrowlandId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
+          const tvShowData = {
+            jakeYBlakeTVShow: { ...jakeYBlakeId, original_title: jakeYBlakeId.name },
+            rescueHeroesTVShow: { ...rescueHeroesId, original_title: rescueHeroesId.name },
+            dwightIdTvShow: { ...dwightId, original_title: dwightId.name },
+            ewwTvShow: { ...ewwId, original_title: ewwId.name }
+          };
+  
+          movies.results = [];
+          tvShows.results = [];
+  
+          const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow];
+          tvShows.results.unshift(...tvShowArray);
+  
+          const movieArray = [radioRebelId, haroldID, tomorrowlandId];
+          movies.results.unshift(...movieArray);
+  
+          upcoming.results.unshift(haroldID);
+  
+          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
+          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
+  
+          return { movies, tvShows, nowPlaying, upcoming, popular, topRated };
+        })
+      )
+      .subscribe((res: any) => {
+        this.movies = res.movies.results as IVideoContent[];
+        this.tvShows = res.tvShows.results as IVideoContent[];
+        this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
+        this.upcomingMovies = res.upcoming.results as IVideoContent[];
+        this.popularMovies = res.popular.results as IVideoContent[];
+        this.topRatedMovies = res.topRated.results as IVideoContent[];
+      });
   }
-
+  
   signOut(){
     sessionStorage.removeItem("loggedInUser");
     this.auth.signOut();

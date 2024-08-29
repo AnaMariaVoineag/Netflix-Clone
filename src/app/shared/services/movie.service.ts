@@ -18,6 +18,7 @@ const options = {
   providedIn: 'root'
 })
 export class MovieService {
+  private apiKey = 'b9b899e97d307f5e6b7b23b9be9bb798'
 
   http = inject(HttpClient);
 
@@ -28,6 +29,15 @@ export class MovieService {
   getTvShows(){
     return this.http.get<any>('https://api.themoviedb.org/3/discover/tv', options)
   }
+
+  getTvShowById(id: number) {
+    return this.http.get<any>(`https://api.themoviedb.org/3/tv/${id}`, options);
+  }
+
+  getMoviesById(id: number) {
+    return this.http.get<any>(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.apiKey}`);
+  }
+  
 
   getBannerImage(id: number) {
     return this.http.get(`https://api.themoviedb.org/3/movie/${id}/images`, options)
@@ -56,5 +66,6 @@ export class MovieService {
   getUpcomingMovies() {
     return this.http.get('https://api.themoviedb.org/3/movie/upcoming', options)
   }
+  
 
 }

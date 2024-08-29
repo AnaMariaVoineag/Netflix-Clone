@@ -1,11 +1,13 @@
 <!-- Login Banner -->
-<div class="absolute">
-    <img src="/assets/netflix_banner.jpg" alt="netflix-login-banner">
-    <img src="/assets/netflix_logo.png" alt="netflix-logo" class="netflix-logo">
+<div class="relative h-screen"> <!-- Modified from absolute to relative to manage layout -->
+    <div class="absolute inset-0">
+      <img src="/assets/netflix_banner.jpg" alt="netflix-login-banner" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/60"></div>
+      <img src="/assets/netflix_logo.png" alt="netflix-logo" class="absolute top-0 left-0 m-4 netflix-logo">
 </div>
 
 <!-- Login Box -->
- <div class="w-full md:w-3/12 absolute right-0 left-0 p-12 bg-black my-36 mx-auto text-white rounded-lg bg-opacity-80">
+ <div class="w-full md:w-3/12 absolute right-0 left-0 p-12 bg-black/80 my-36 mx-auto text-white rounded-lg">
     <h1 class="font-bold text-3xl py-4">Netflix Sign In</h1>
     <div id="google-btn"></div>
  </div>
