@@ -1,9 +1,9 @@
 <div class="container px-20 mt-14 mb-20">
   <p class="font-semibold text-2xl my-3 ml-3">{{title}}</p>
-  <div class="swiper-container">
+  <div #swiperContainer class="swiper-container">
     <div class="swiper-wrapper">
       <ng-container *ngFor="let movie of videoContents">
-      <div (mouseenter)="setHoverMovie(movie)"  (mouseleave)="clearHoverMovie()" class="swiper-slide relative">
+      <div (mouseenter)="setHoverMovie(movie)" (mouseleave)="clearHoverMovie()" class="swiper-slide relative" [routerLink]="['/widget']">
         <img [src]="movie.poster_path | image" alt="poster-image" />
         <div @fade *ngIf="(movie.title) === this.selectedContent || (movie.name) === selectedContent " class="desc p-2">
             <span class="text-base flex flex-wrap font-bold">{{movie.original_title}}</span>

@@ -1,7 +1,11 @@
-import { importProvidersFrom } from '@angular/core';
 import { Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { VideoWidgetComponent } from './pages/video-widget/video-widget.component';
 
 export const routes: Routes = [
-    {path: '', loadComponent: ()=> import('./pages/login/login.component').then(a=> a.LoginComponent)},
-    {path: 'home', loadComponent: ()=> import('./pages/home/home.component').then(b=> b.HomeComponent)}
+    {path: '', redirectTo: '/login', pathMatch: 'full' },
+    {path: 'login', component: LoginComponent},
+    {path: 'home', component: HomeComponent},
+    {path: 'widget', component: VideoWidgetComponent}
 ];

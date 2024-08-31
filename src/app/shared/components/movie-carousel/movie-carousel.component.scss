@@ -30,6 +30,7 @@
   object-fit: cover;
 }
 
+
 .swiper-slide img:active {
   cursor: grabbing;
 }
@@ -68,8 +69,8 @@
   position: relative;
   width: 200px;
   height: 275px;
-  overflow: hidden; /* Ensures that the enlarged image doesn’t overflow */
-  transition: transform 0.3s ease; /* Smooth transition for scaling */
+  overflow: hidden; 
+  transition: transform 0.3s ease; 
 }
 
 .swiper-slide img {

@@ -1,33 +1,23 @@
-<header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown link
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-</header>
+<nav class="navbar navbar-light px-4 z-10 bg-[#141414]">
+  <div class="container-fluid d-flex align-items-center">
+    <!-- Navbar Brand with Logo -->
+    <div class="navbar-brand align-items-center flex gap-5">
+      <img width="110" src="/assets/netflix_logo.png" alt="Netflix Logo" class="me-3">
+      <ul class="flex items-center" *ngFor="let item of navList" class="text-white text-lg">
+        <a [routerLink]="item.link">{{item.name}}</a>
+      </ul>
+    </div>
+
+    <!-- Navbar Toggler Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"></button>
+
+    <div class="text-white flex items-center gap-4">
+      <div class="flex items-center gap-2">
+          <a><span>{{ greeting }} <strong>{{userName}}</strong></span></a>
+          <img class="rounded-[50%]" [src]="userImg" width="42" alt="user-image">
+      </div>
+      &nbsp; | &nbsp;
+      <a [routerLink]="['/login']">Sign out</a>
+   </div>
+    </div>
+</nav>

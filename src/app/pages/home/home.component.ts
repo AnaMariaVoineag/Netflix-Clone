@@ -8,11 +8,12 @@ import { MovieCarouselComponent } from '../../shared/components/movie-carousel/m
 import { IVideoContent } from '../../shared/models/video-content.interface';
 import { DescriptionPipe } from '../../shared/pipes/description.pipe';
 import { forkJoin, map, Observable } from 'rxjs';
+import { VideoWidgetComponent } from '../video-widget/video-widget.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent],
+  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent, VideoWidgetComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -44,8 +45,8 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
     const ids = {
-      tvShows: [33117, 45054, 89941, 60998],
-      movies: [826510, 89185, 158852]
+      tvShows: [33117, 45054, 89941, 60998, 61851],
+      movies: [826510, 89185, 158852, 71885, 424694]
     };
   
     const tvShowRequests = ids.tvShows.map(id => this.movieService.getTvShowById(id));
@@ -53,21 +54,22 @@ export class HomeComponent implements OnInit {
   
     forkJoin([...tvShowRequests, ...movieRequests, ...this.sources])
       .pipe(
-        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, haroldID, radioRebelId, tomorrowlandId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
+        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, haroldID, radioRebelId, tomorrowlandId, motocrossedId, bohemianId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
           const tvShowData = {
             jakeYBlakeTVShow: { ...jakeYBlakeId, original_title: jakeYBlakeId.name },
             rescueHeroesTVShow: { ...rescueHeroesId, original_title: rescueHeroesId.name },
             dwightIdTvShow: { ...dwightId, original_title: dwightId.name },
-            ewwTvShow: { ...ewwId, original_title: ewwId.name }
+            ewwTvShow: { ...ewwId, original_title: ewwId.name },
+            batgTVhow: {...batgId, original_title: batgId.name}
           };
   
           movies.results = [];
           tvShows.results = [];
   
-          const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow];
+          const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow, tvShowData.batgTVhow];
           tvShows.results.unshift(...tvShowArray);
   
-          const movieArray = [radioRebelId, haroldID, tomorrowlandId];
+          const movieArray = [radioRebelId, haroldID, tomorrowlandId, motocrossedId, bohemianId];
           movies.results.unshift(...movieArray);
   
           upcoming.results.unshift(haroldID);

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 enum UserGreetings {
   English = 'Hello, ',
@@ -12,14 +13,19 @@ enum UserGreetings {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
   @Input({required: true}) userName: string = '';
   @Input({required: true}) userImg: string = '';
-  navList = ["Home", "TV Shows", "News & Popular", "My List", "Browse by Language"];
+  navList = [{name: 'Home', link: '/login'},
+    {name: 'TV Shows'},
+    {name: 'New & Popular'},
+    {name: 'My List'},
+    {name: 'Browse by Language'},
+  ];
   greetingMessages: string[] = Object.values(UserGreetings);
 
   private _greeting: string | null = null;
