@@ -47,11 +47,15 @@ export class MovieCarouselComponent implements OnInit, AfterViewInit{
     });
   }
 
-  setHoverMovie(movie: IVideoContent){
+  setHoverMovie(movie: IVideoContent) {
     this.selectedContent = movie.title ?? movie.name;
   }
 
   clearHoverMovie() {
     this.selectedContent = null;
+  }
+
+  isMovie(content: IVideoContent): boolean {
+    return !!content.title; 
   }
 }

@@ -6,14 +6,13 @@ import { BannerComponent } from '../../core/components/banner/banner.component';
 import { MovieService } from '../../shared/services/movie.service';
 import { MovieCarouselComponent } from '../../shared/components/movie-carousel/movie-carousel.component';
 import { IVideoContent } from '../../shared/models/video-content.interface';
-import { DescriptionPipe } from '../../shared/pipes/description.pipe';
 import { forkJoin, map, Observable } from 'rxjs';
-import { VideoWidgetComponent } from '../video-widget/video-widget.component';
+import { MovieWidgetComponent } from '../movie-widget/movie-widget.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent, VideoWidgetComponent],
+  imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent, MovieWidgetComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -45,8 +44,8 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
     const ids = {
-      tvShows: [33117, 45054, 89941, 60998, 61851],
-      movies: [826510, 89185, 158852, 71885, 424694]
+      tvShows: [33117, 45054, 89941, 60998, 61851, 115304],
+      movies: [826510, 89185, 158852, 71885, 424694, 65218]
     };
   
     const tvShowRequests = ids.tvShows.map(id => this.movieService.getTvShowById(id));
@@ -54,22 +53,23 @@ export class HomeComponent implements OnInit {
   
     forkJoin([...tvShowRequests, ...movieRequests, ...this.sources])
       .pipe(
-        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, haroldID, radioRebelId, tomorrowlandId, motocrossedId, bohemianId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
+        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, intertwinedID, haroldID, radioRebelId, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
           const tvShowData = {
             jakeYBlakeTVShow: { ...jakeYBlakeId, original_title: jakeYBlakeId.name },
             rescueHeroesTVShow: { ...rescueHeroesId, original_title: rescueHeroesId.name },
             dwightIdTvShow: { ...dwightId, original_title: dwightId.name },
             ewwTvShow: { ...ewwId, original_title: ewwId.name },
-            batgTVhow: {...batgId, original_title: batgId.name}
+            batgTVhow: {...batgId, original_title: batgId.name},
+            intertwinedTVShow: {...intertwinedID, original_title: intertwinedID.name}
           };
   
           movies.results = [];
           tvShows.results = [];
   
-          const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow, tvShowData.batgTVhow];
+          const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow, tvShowData.batgTVhow, tvShowData.intertwinedTVShow];
           tvShows.results.unshift(...tvShowArray);
   
-          const movieArray = [radioRebelId, haroldID, tomorrowlandId, motocrossedId, bohemianId];
+          const movieArray = [radioRebelId, haroldID, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId];
           movies.results.unshift(...movieArray);
   
           upcoming.results.unshift(haroldID);

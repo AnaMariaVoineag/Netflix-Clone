@@ -1,24 +1,27 @@
-import { Component, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Renderer2 } from '@angular/core';
 import { HeaderComponent } from '../../core/components/header/header.component';
 import { HomeComponent } from '../home/home.component';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
-  selector: 'app-video-widget',
+  selector: 'app-movie-widget',
   standalone: true,
   imports: [HeaderComponent, HomeComponent],
-  templateUrl: './video-widget.component.html',
-  styleUrls: ['./video-widget.component.scss']
+  templateUrl: './movie-widget.component.html',
+  styleUrl: './movie-widget.component.scss'
 })
-export class VideoWidgetComponent implements AfterViewInit {
-  userName: string = '';
-  userImg: string = '';
+export class MovieWidgetComponent implements OnInit {
+  auth = inject(AuthService);
+  renderer = inject(Renderer2);
 
-  constructor(private renderer: Renderer2) {}
+  userName!: string;
+  userImg!: string;
 
-  ngAfterViewInit(): void {
-    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser") || '{}');
-    this.userName = loggedInUser.name || '';
-    this.userImg = loggedInUser.picture || '';
+  ngOnInit(): void {
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser")!);
+    this.userName = loggedInUser.name!;
+    this.userImg = loggedInUser.picture!;
 
     this.insertVideoWidget();
   }
