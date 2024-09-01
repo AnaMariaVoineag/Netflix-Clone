@@ -14,7 +14,7 @@ import { MovieWidgetComponent } from '../movie-widget/movie-widget.component';
   standalone: true,
   imports: [CommonModule, HeaderComponent, BannerComponent, MovieCarouselComponent, MovieWidgetComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   auth = inject(AuthService);
@@ -41,16 +41,19 @@ export class HomeComponent implements OnInit {
     this.movieService.getPopularMovies(),
     this.movieService.getTopRated()
   ];
-  
+
+  // Define the videosId
+  videosId: number = 8848802712147;
+
   ngOnInit(): void {
     const ids = {
       tvShows: [33117, 45054, 89941, 60998, 61851, 115304],
       movies: [826510, 89185, 158852, 71885, 424694, 65218]
     };
-  
+
     const tvShowRequests = ids.tvShows.map(id => this.movieService.getTvShowById(id));
     const movieRequests = ids.movies.map(id => this.movieService.getMoviesById(id));
-  
+
     forkJoin([...tvShowRequests, ...movieRequests, ...this.sources])
       .pipe(
         map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, intertwinedID, haroldID, radioRebelId, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
@@ -62,21 +65,21 @@ export class HomeComponent implements OnInit {
             batgTVhow: {...batgId, original_title: batgId.name},
             intertwinedTVShow: {...intertwinedID, original_title: intertwinedID.name}
           };
-  
+
           movies.results = [];
           tvShows.results = [];
-  
+
           const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow, tvShowData.batgTVhow, tvShowData.intertwinedTVShow];
           tvShows.results.unshift(...tvShowArray);
-  
+
           const movieArray = [radioRebelId, haroldID, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId];
           movies.results.unshift(...movieArray);
-  
+
           upcoming.results.unshift(haroldID);
-  
+
           this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
           this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
-  
+
           return { movies, tvShows, nowPlaying, upcoming, popular, topRated };
         })
       )
@@ -89,10 +92,9 @@ export class HomeComponent implements OnInit {
         this.topRatedMovies = res.topRated.results as IVideoContent[];
       });
   }
-  
+
   signOut(){
     sessionStorage.removeItem("loggedInUser");
     this.auth.signOut();
   }
-
 }

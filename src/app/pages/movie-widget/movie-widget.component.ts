@@ -3,20 +3,23 @@ import { Renderer2 } from '@angular/core';
 import { HeaderComponent } from '../../core/components/header/header.component';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../../shared/services/auth.service';
+import { OkruService } from '../../shared/services/okru.service'; // Import OkruService
 
 @Component({
   selector: 'app-movie-widget',
   standalone: true,
   imports: [HeaderComponent, HomeComponent],
   templateUrl: './movie-widget.component.html',
-  styleUrl: './movie-widget.component.scss'
+  styleUrls: ['./movie-widget.component.scss']
 })
 export class MovieWidgetComponent implements OnInit {
   auth = inject(AuthService);
   renderer = inject(Renderer2);
+  okruService = inject(OkruService);
 
   userName!: string;
   userImg!: string;
+  videosId: number = 6810037455456; 
 
   ngOnInit(): void {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser")!);
@@ -28,7 +31,8 @@ export class MovieWidgetComponent implements OnInit {
 
   insertVideoWidget(): void {
     const iframe = this.renderer.createElement('iframe');
-    iframe.src = 'https://ok.ru/videoembed/8848802712147'; 
+    const videoUrl = this.okruService.getOkRuVideoUrl(this.videosId.toString()); 
+    iframe.src = videoUrl;
     iframe.width = '560';
     iframe.height = '315';
     iframe.frameBorder = '0';
