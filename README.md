@@ -37,10 +37,10 @@ Interective Movie Cards: Each cards when is hovered displays the title of the mo
 Frontend: Angular, TypeScript, SCSS, HTML5, Swiper JS with npm, TMDB API, Google Cloud Console
 
 # Photos
-![login_screen](https://github.com/user-attachments/assets/6c2f03cb-01d6-4747-82fa-48dca1717bc6)
-![login_user_screen](https://github.com/user-attachments/assets/4bda8df5-d21f-4a13-8480-6bcf1be01858)
-![login_google_screen](https://github.com/user-attachments/assets/e5c76648-ce98-481c-a05e-abc8264b7afc)
-![home_page](https://github.com/user-attachments/assets/26f7946f-7508-4deb-8fea-01b6feaa89dd)
-![movies_shows_cards](https://github.com/user-attachments/assets/e3f37615-1c99-405e-8a84-3aae59aaaaa6)
-![popular_movies_cards](https://github.com/user-attachments/assets/e0ecc71b-c803-4dbb-8c26-0f25901ca04a)
-![upcoming_movies_cards](https://github.com/user-attachments/assets/e01aad65-7b75-468b-a7c7-882a198d424e)
+![login_screen](https://github.com/user-attachments/assets/8452f63b-431d-45ae-a446-033caebd9137)
+![login_user_screen](https://github.com/user-attachments/assets/cb6bba7c-b7d6-401a-8ed4-0a19afe6f859)
+![login_google_screen](https://github.com/user-attachments/assets/45b0692b-aac7-436a-a180-d5f5bda03734)
+![home_page](https://github.com/user-attachments/assets/3ec43eca-3775-434f-9272-618c5e840ed3)
+![movies_shows_cards](https://github.com/user-attachments/assets/637f04e2-e19a-4c1a-a41b-d2dd8d18feb8)
+![popular_movies_cards](https://github.com/user-attachments/assets/4696a92c-1b4c-4ab9-9757-80454dcc0270)
+![upcoming_movies_cards](https://github.com/user-attachments/assets/36a4ab2c-88db-44b8-b0a4-bb5d89999e55)
