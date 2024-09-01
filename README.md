@@ -38,7 +38,7 @@ Frontend: Angular, TypeScript, SCSS, HTML5, Swiper JS with npm, TMDB API, Google
 
 # Photos
 ![login_screen](https://github.com/user-attachments/assets/8452f63b-431d-45ae-a446-033caebd9137)
-![login_user_screen](https://github.com/user-attachments/assets/4bda8df5-d21f-4a13-8480-6bcf1be01858)
+![login_user_screen](https://github.com/user-attachments/assets/cb6bba7c-b7d6-401a-8ed4-0a19afe6f859)
 ![login_google_screen](https://github.com/user-attachments/assets/45b0692b-aac7-436a-a180-d5f5bda03734)
 ![home_page](https://github.com/user-attachments/assets/3ec43eca-3775-434f-9272-618c5e840ed3)
 ![movies_shows_cards](https://github.com/user-attachments/assets/637f04e2-e19a-4c1a-a41b-d2dd8d18feb8)
