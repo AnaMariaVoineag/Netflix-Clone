@@ -11,4 +11,5 @@ export class OkruService {
   getOkRuVideoUrl(videosId: string): string {
     return `https://ok.ru/videoembed/${videosId}`;
   }
+  
 }
