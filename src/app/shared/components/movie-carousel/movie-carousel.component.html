@@ -7,7 +7,7 @@
           (mouseenter)="setHoverMovie(movie)"
           (mouseleave)="clearHoverMovie()"
           class="swiper-slide relative"
-          [routerLink]="['/movie-widget', movie.id, movie.okruId]">
+          [routerLink]="isMovie(movie) ? ['/movie-widget', movie.id, movie.okruId] : ['/tvshow-widget']">
           <img [src]="movie.poster_path | image" alt="poster-image" />
           <div @fade *ngIf="(movie.title) === this.selectedContent || (movie.name) === selectedContent" class="desc p-2">
             <span class="text-base flex flex-wrap font-bold">{{ movie.original_title }}</span>
