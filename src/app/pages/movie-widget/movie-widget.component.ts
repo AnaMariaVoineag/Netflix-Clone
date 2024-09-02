@@ -43,13 +43,14 @@ export class MovieWidgetComponent implements OnInit, AfterViewInit {
     const videoUrl = this.okruService.getOkRuVideoUrl(this.okruId); 
 
     iframe.src = videoUrl;
-    iframe.width = '560';
-    iframe.height = '315';
+    iframe.width = '853';
+    iframe.height = '480';
     iframe.frameBorder = '0';
     iframe.allowFullscreen = true;
     iframe.style.maxWidth = '100%';
     iframe.style.margin = '0 auto';
     iframe.style.display = 'block';
+    iframe.style.border = 'none'; 
 
     const widgetContainer = this.renderer.selectRootElement('#ok_content_widget', true);
     this.renderer.appendChild(widgetContainer, iframe);

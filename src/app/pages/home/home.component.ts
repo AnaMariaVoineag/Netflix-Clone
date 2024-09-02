@@ -47,17 +47,18 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     const ids = {
       tvShows: [33117, 45054, 89941, 60998, 61851, 115304],
-      movies: [826510, 89185, 158852, 71885, 424694, 65218]
+      movies: [13576, 89185, 71885, 424694, 7512, 65218, 316029, 18736]
     };
 
     const okruIds: { [key: number]: string } = {
-      89185: '6810037455456',
-      826510: '5032385579655',
-      158852: '6810037455456',
-      71885: '6810037455456',
-      424694: '6810037455456',
-      115304: '6810037455456',
-      65218: '6810037455456',
+      89185: '2048075238015', //Radio Rebel
+      13576: '1569979763298', //This is it
+      71885: '7599396817585', //Motocrossed
+      424694: '6865400826529', //Bohemian Rapsody
+      7512: '3577089034790', //Idiocracy
+      65218: '7705353718483', //Lemonade Mouth
+      316029: '1315495611120',
+      18736: '7811220310709'
     };
 
     const tvShowRequests = ids.tvShows.map(id => this.movieService.getTvShowById(id));
@@ -65,7 +66,7 @@ export class HomeComponent implements OnInit {
 
     forkJoin([...tvShowRequests, ...movieRequests, ...this.sources])
       .pipe(
-        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, intertwinedID, haroldID, radioRebelId, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
+        map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, intertwinedID, thisIsItId, radioRebelId, idiocracyID, motocrossedId, bohemianId, lemonadeMouthId, showmanId, lizzieId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
           const tvShowData = {
             jakeYBlakeTVShow: { ...jakeYBlakeId, original_title: jakeYBlakeId.name },
             rescueHeroesTVShow: { ...rescueHeroesId, original_title: rescueHeroesId.name },
@@ -77,11 +78,13 @@ export class HomeComponent implements OnInit {
 
           const movieData = {
             radioRebelId: { ...radioRebelId, okruId: okruIds[radioRebelId.id] },
-            haroldID: { ...haroldID, okruId: okruIds[haroldID.id] },
-            tomorrowlandId: { ...tomorrowlandId, okruId: okruIds[tomorrowlandId.id] },
+            thisIsItId: { ...thisIsItId, okruId: okruIds[thisIsItId.id]},
+            idiocracyID: { ...idiocracyID, okruId: okruIds[idiocracyID.id]},
             motocrossedId: { ...motocrossedId, okruId: okruIds[motocrossedId.id] },
             bohemianId: { ...bohemianId, okruId: okruIds[bohemianId.id] },
-            lemonadeMouthId: { ...lemonadeMouthId, okruId: okruIds[lemonadeMouthId.id] }
+            lemonadeMouthId: { ...lemonadeMouthId, okruId: okruIds[lemonadeMouthId.id] },
+            showmanId: { ...showmanId, okruId: okruIds[showmanId.id]},
+            lizzieId: {...lizzieId, okruId: okruIds[lizzieId.id]}
           };
 
           movies.results = [];
@@ -99,16 +102,16 @@ export class HomeComponent implements OnInit {
 
           const movieArray = [
             movieData.radioRebelId, 
-            movieData.haroldID, 
-            movieData.tomorrowlandId, 
+            movieData.thisIsItId, 
+            movieData.idiocracyID, 
             movieData.motocrossedId, 
             movieData.bohemianId, 
-            movieData.lemonadeMouthId
+            movieData.lemonadeMouthId,
+            movieData.lizzieId
           ];
           movies.results.unshift(...movieArray);
 
-          upcoming.results.unshift(movieData.haroldID);
-          upcoming.results.unshift(haroldID);
+          topRated.results.unshift(movieData.showmanId);
 
           this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
           this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);

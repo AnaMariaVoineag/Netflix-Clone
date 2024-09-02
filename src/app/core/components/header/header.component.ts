@@ -21,9 +21,9 @@ export class HeaderComponent {
   @Input({required: true}) userName: string = '';
   @Input({required: true}) userImg: string = '';
   navList = [{name: 'Home', link: '/login'},
-    {name: 'TV Shows'},
+    {name: 'Movies', link: '/home'},
     {name: 'New & Popular'},
-    {name: 'My List'},
+    {name: 'About'},
     {name: 'Browse by Language'},
   ];
   greetingMessages: string[] = Object.values(UserGreetings);
