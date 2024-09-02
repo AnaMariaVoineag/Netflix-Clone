@@ -5,12 +5,14 @@
     <h1 class="text-6xl font-bold">{{bannerTitle}}</h1>
     <p class="inline-block py-6 text-xl w-1/2 flex-wrap">{{bannerOverview}}</p>
     <div>
-      <button (click)="playMovie()" class="bg-white text-black py-4 px-12 text-xl rounded-lg hover:bg-opacity-70 transition-[1s]">
+      <button (click)="playMovie()" class="bg-white text-black py-4 px-12 text-xl rounded-lg hover:bg-opacity-70 transition-[2s] btn">
         Play
       </button>
-      <button class="mx-2 bg-gray-500 text-white py-4 px-12 text-xl bg-opacity-50 rounded-lg">
-        More Info
-      </button>
+      <a href="https://en.wikipedia.org/wiki/Radio_Rebel" target="_blank">
+        <button class="mx-3 bg-gray-500 text-white py-4 px-12 text-xl bg-opacity-50 rounded-lg btn">
+            More Info
+        </button>
+      </a>
     </div>
   </div>
 </div>
