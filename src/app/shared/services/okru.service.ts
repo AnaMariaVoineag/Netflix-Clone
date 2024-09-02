@@ -1,15 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OkruService {
 
-  http = inject(HttpClient);
-
-  getOkRuVideoUrl(videosId: string): string {
-    return `https://ok.ru/videoembed/${videosId}`;
+  getOkRuVideoUrl(videoId: string): string {
+    return `https://ok.ru/videoembed/${videoId}`;
   }
-  
 }

@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   popularMovies: IVideoContent[] = [];
   topRatedMovies: IVideoContent[] = [];
   upcomingMovies: IVideoContent[] = [];
+  okruId: IVideoContent[] = [];
 
   sources = [
     this.movieService.getMovies(),
@@ -42,16 +43,26 @@ export class HomeComponent implements OnInit {
     this.movieService.getPopularMovies(),
     this.movieService.getTopRated()
   ];
-  
+
   ngOnInit(): void {
     const ids = {
       tvShows: [33117, 45054, 89941, 60998, 61851, 115304],
       movies: [826510, 89185, 158852, 71885, 424694, 65218]
     };
-  
+
+    const okruIds: { [key: number]: string } = {
+      89185: '6810037455456',
+      826510: '5032385579655',
+      158852: '6810037455456',
+      71885: '6810037455456',
+      424694: '6810037455456',
+      115304: '6810037455456',
+      65218: '6810037455456',
+    };
+
     const tvShowRequests = ids.tvShows.map(id => this.movieService.getTvShowById(id));
     const movieRequests = ids.movies.map(id => this.movieService.getMoviesById(id));
-  
+
     forkJoin([...tvShowRequests, ...movieRequests, ...this.sources])
       .pipe(
         map(([jakeYBlakeId, rescueHeroesId, dwightId, ewwId, batgId, intertwinedID, haroldID, radioRebelId, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId, movies, tvShows, nowPlaying, upcoming, popular, topRated]) => {
@@ -60,24 +71,48 @@ export class HomeComponent implements OnInit {
             rescueHeroesTVShow: { ...rescueHeroesId, original_title: rescueHeroesId.name },
             dwightIdTvShow: { ...dwightId, original_title: dwightId.name },
             ewwTvShow: { ...ewwId, original_title: ewwId.name },
-            batgTVhow: {...batgId, original_title: batgId.name},
-            intertwinedTVShow: {...intertwinedID, original_title: intertwinedID.name}
+            batgTVshow: { ...batgId, original_title: batgId.name },
+            intertwinedTVShow: { ...intertwinedID, original_title: intertwinedID.name }
           };
-  
+
+          const movieData = {
+            radioRebelId: { ...radioRebelId, okruId: okruIds[radioRebelId.id] },
+            haroldID: { ...haroldID, okruId: okruIds[haroldID.id] },
+            tomorrowlandId: { ...tomorrowlandId, okruId: okruIds[tomorrowlandId.id] },
+            motocrossedId: { ...motocrossedId, okruId: okruIds[motocrossedId.id] },
+            bohemianId: { ...bohemianId, okruId: okruIds[bohemianId.id] },
+            lemonadeMouthId: { ...lemonadeMouthId, okruId: okruIds[lemonadeMouthId.id] }
+          };
+
           movies.results = [];
           tvShows.results = [];
-  
-          const tvShowArray = [tvShowData.jakeYBlakeTVShow, tvShowData.ewwTvShow, tvShowData.dwightIdTvShow, tvShowData.rescueHeroesTVShow, tvShowData.batgTVhow, tvShowData.intertwinedTVShow];
+
+          const tvShowArray = [
+            tvShowData.jakeYBlakeTVShow, 
+            tvShowData.ewwTvShow, 
+            tvShowData.dwightIdTvShow, 
+            tvShowData.rescueHeroesTVShow, 
+            tvShowData.batgTVshow, 
+            tvShowData.intertwinedTVShow
+          ];
           tvShows.results.unshift(...tvShowArray);
-  
-          const movieArray = [radioRebelId, haroldID, tomorrowlandId, motocrossedId, bohemianId, lemonadeMouthId];
+
+          const movieArray = [
+            movieData.radioRebelId, 
+            movieData.haroldID, 
+            movieData.tomorrowlandId, 
+            movieData.motocrossedId, 
+            movieData.bohemianId, 
+            movieData.lemonadeMouthId
+          ];
           movies.results.unshift(...movieArray);
-  
+
+          upcoming.results.unshift(movieData.haroldID);
           upcoming.results.unshift(haroldID);
-  
+
           this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
           this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
-  
+
           return { movies, tvShows, nowPlaying, upcoming, popular, topRated };
         })
       )
@@ -88,7 +123,6 @@ export class HomeComponent implements OnInit {
         this.upcomingMovies = res.upcoming.results as IVideoContent[];
         this.popularMovies = res.popular.results as IVideoContent[];
         this.topRatedMovies = res.topRated.results as IVideoContent[];
-
       });
   }
   
