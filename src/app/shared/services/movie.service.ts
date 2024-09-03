@@ -26,19 +26,10 @@ export class MovieService {
     return this.http.get<any>('https://api.themoviedb.org/3/discover/movie', options);
   }
 
-  getTvShows(){
-    return this.http.get<any>('https://api.themoviedb.org/3/discover/tv', options)
-  }
-
-  getTvShowById(id: number) {
-    return this.http.get<any>(`https://api.themoviedb.org/3/tv/${id}`, options);
-  }
-
   getMoviesById(id: number) {
     return this.http.get<any>(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.apiKey}`);
   }
   
-
   getBannerImage(id: number) {
     return this.http.get(`https://api.themoviedb.org/3/movie/${id}/images`, options)
   }
@@ -67,5 +58,4 @@ export class MovieService {
     return this.http.get('https://api.themoviedb.org/3/movie/upcoming', options)
   }
   
-
 }

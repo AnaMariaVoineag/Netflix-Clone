@@ -4,9 +4,6 @@
 <app-banner [bannerTitle]="(bannerDetail$ | async)?.original_title" [bannerOverview]="(bannerDetail$ | async)?.overview" [key]="(bannerVideo$ | async)?.results[0].key" [movieId]="89185"
 okruId='2048075238015'/>
 <app-movie-carousel [title]="'Movies'" [videoContents]="movies" />
-<app-movie-carousel [title]="'TV Shows'" [videoContents]="tvShows" />
 <app-movie-carousel [title]="'Now Playing Movies'" [videoContents]="nowPlayingMovies" />
 <app-movie-carousel [title]="'Popular Movies'" [videoContents]="popularMovies" />
-<app-movie-carousel [title]="'Top Rated Movies'" [videoContents]="topRatedMovies" />
-<app-movie-carousel [title]="'Upcoming Movies'" [videoContents]="upcomingMovies" />
 
