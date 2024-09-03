@@ -7,7 +7,7 @@ enum UserGreetings {
   Romanian = 'Bună, ',
   German = 'Hallo, ',
   Spanish = 'Hola, ',
-  France = 'Bonjour, '
+  France = 'Bonjour, ',
 }
 
 @Component({
