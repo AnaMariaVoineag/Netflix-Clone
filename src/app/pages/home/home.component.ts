@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const ids = {
-      movies: [13576, 89185, 71885, 424694, 7512, 65218, 316029, 18736, 1114926, 704239, 597, 238, 240, 227149, 49928, 80609, 1160164, 416494, 138038, 245473, 34766, 29742, 256962, 419478, 36568, 360365, 810, 1073170, 1023922, 519182, 2118, 87343, 10330, 790142, 762441, 634649, 52699, 124117, 60405, 9342, 46004, 765169, 49350]
+      movies: [13576, 89185, 71885, 424694, 7512, 65218, 316029, 18736, 1114926, 704239, 597, 238, 240, 227149, 49928, 80609, 1160164, 416494, 138038, 245473, 34766, 29742, 256962, 419478, 36568, 360365, 810, 1073170, 1023922, 519182, 2118, 87343, 10330, 790142, 762441, 634649, 52699, 124117, 60405, 9342, 46004, 765169, 50479]
     };
 
     const okruIds: { [key: number]: string } = {
@@ -88,14 +88,14 @@ export class HomeComponent implements OnInit {
       9342: '6826401139333', // The Mask of Zorro
       46004: '1722746669606', // The Luck of The Irish
       765169: '2876287486551', // Bia, Un Mundo AL Reves
-      49350: '1346480507569'// Harriet the Spy: Blog Wars
+      50479: '3834685229623'// Avalon High
     };
 
     const movieRequests = ids.movies.map(id => this.movieService.getMoviesById(id));
 
     forkJoin([...movieRequests, ...this.sources])
       .pipe(
-        map(([thisIsItId, radioRebelId, motocrossedId, bohemianId, idiocracyID, lemonadeMouthId, showmanId, lizzieId, tghId, unionId, titanicId, tgfId, tgfp2Id, iceAngelId, auPairId, auPairTwoId, erasTourId, statusUpdateId, girlVsId, cloudNineId, zenonId, zequelId, littleBoyId, midninghtId, paulieId, tiniMovieId, shrekThreeId, zoey102Id, maxxxineId, despicableMeFourId, laconfidentialId, momstrikeId, freakyId, trtId, quietId, spiderManId, hatchingPeteId, pixelPerfectId, sharpayId, zorroId, theLuckOfId, biaId, blogWarsId, movies, nowPlaying, popular]) => {
+        map(([thisIsItId, radioRebelId, motocrossedId, bohemianId, idiocracyID, lemonadeMouthId, showmanId, lizzieId, tghId, unionId, titanicId, tgfId, tgfp2Id, iceAngelId, auPairId, auPairTwoId, erasTourId, statusUpdateId, girlVsId, cloudNineId, zenonId, zequelId, littleBoyId, midninghtId, paulieId, tiniMovieId, shrekThreeId, zoey102Id, maxxxineId, despicableMeFourId, laconfidentialId, momstrikeId, freakyId, trtId, quietId, spiderManId, hatchingPeteId, pixelPerfectId, sharpayId, zorroId, theLuckOfId, biaId, avalonHighId, movies, nowPlaying, popular]) => {
           const movieData = {
             radioRebelId: { ...radioRebelId, okruId: okruIds[radioRebelId.id] },
             thisIsItId: { ...thisIsItId, okruId: okruIds[thisIsItId.id] },
@@ -142,7 +142,7 @@ export class HomeComponent implements OnInit {
             zorroId: { ...zorroId, okruId: okruIds[zorroId.id] },
             theLuckOfId: { ...theLuckOfId, okruId: okruIds[theLuckOfId.id] },
             biaId: { ...biaId, okruId: okruIds[biaId.id] },
-            blogWarsId: { ...blogWarsId, okruId: okruIds[blogWarsId.id]},
+            avalonHighId: { ...avalonHighId, okruId: okruIds[avalonHighId.id]},
           };
 
           movies.results = [];
@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit {
           const movieArray = [
             movieData.radioRebelId, 
             movieData.thisIsItId,
-            movieIds.blogWarsId, 
+            movieIds.avalonHighId, 
             movieData.motocrossedId, 
             movieData.erasTourId,
             movieData.bohemianId, 
