@@ -223,8 +223,8 @@ export class HomeComponent implements OnInit {
           popular.results.unshift(...popularMovies);
           nowPlaying.results.unshift(...nowPlayingMovies);
 
-          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
-          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
+          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[1].id);
+          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[1].id);
 
           return { movies, nowPlaying, popular };
         }),
@@ -241,3 +241,23 @@ export class HomeComponent implements OnInit {
     this.auth.signOut();
   }
 }
+
+/* class Movie {
+  constructor(public readonly name: string = '',
+  public readonly tmdbId: string = '',
+  public readonly urlId: string = '') {}
+}
+
+new Movie('Dont look up', '123', 'xyz');
+
+let movies = new Map<string, Movie>();
+
+//movies.find(m => m.tmdbId === '123');
+class Movies {
+  findByTmdbId(id: string): Movie {
+
+  }
+  addMovie(movie: Movie): boolean {
+
+  }
+} */

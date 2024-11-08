@@ -1,8 +1,8 @@
 <app-header [userName]="name" [userImg]="userProfileImg" />
 
 <!-- component -->
-<app-banner [bannerTitle]="(bannerDetail$ | async)?.original_title" [bannerOverview]="(bannerDetail$ | async)?.overview" [key]="(bannerVideo$ | async)?.results[0].key" [movieId]="89185"
-okruId='2048075238015'/>
+<app-banner [bannerTitle]="(bannerDetail$ | async)?.original_title" [bannerOverview]="(bannerDetail$ | async)?.overview" [key]="(bannerVideo$ | async)?.results[1].key" [movieId]="13576"
+okruId='1569979763298'/>
 <app-movie-carousel [title]="'Movies'" [videoContents]="movies" />
 <app-movie-carousel [title]="'Now Playing Movies'" [videoContents]="nowPlayingMovies" />
 <app-movie-carousel [title]="'Popular Movies'" [videoContents]="popularMovies" />
