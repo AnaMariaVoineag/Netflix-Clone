@@ -20,6 +20,20 @@ export class BannerComponent implements OnChanges {
   private sanitizer = inject(DomSanitizer);
   private router = inject(Router);
 
+  get wikipediaUrl(): string {
+    if (!this.bannerTitle) return '';
+  
+    const formattedTitle = this.bannerTitle.replace(/\s+/g, '_');
+
+    if (!formattedTitle.toLowerCase().includes('film')) {
+      return `https://en.wikipedia.org/wiki/${formattedTitle}_(film)`;
+    }
+  
+    return `https://en.wikipedia.org/wiki/${formattedTitle}`;
+  }
+  
+  
+
   videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.key}?autoplay=1&mute=1&loop=1&controls=0`);
 
   ngOnChanges(changes: SimpleChanges): void {

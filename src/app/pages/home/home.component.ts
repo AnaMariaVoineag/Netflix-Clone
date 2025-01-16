@@ -150,10 +150,10 @@ export class HomeComponent implements OnInit {
           nowPlaying.results = [];
 
           const movieArray = [
+            movieIds.avalonHighId,
+            movieData.motocrossedId, 
             movieData.radioRebelId, 
             movieData.thisIsItId,
-            movieIds.avalonHighId, 
-            movieData.motocrossedId, 
             movieData.erasTourId,
             movieData.bohemianId, 
             movieData.idiocracyID, 
@@ -164,7 +164,6 @@ export class HomeComponent implements OnInit {
             movieData.cloudNineId,
             movieIds.pixelPerfectId,
             movieData.statusUpdateId,
-            movieIds.sharpayId,
             movieData.showmanId,
             movieIds.midninghtId,
             movieIds.littleBoyId,
@@ -223,8 +222,8 @@ export class HomeComponent implements OnInit {
           popular.results.unshift(...popularMovies);
           nowPlaying.results.unshift(...nowPlayingMovies);
 
-          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[1].id);
-          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[1].id);
+          this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
+          this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
 
           return { movies, nowPlaying, popular };
         }),
